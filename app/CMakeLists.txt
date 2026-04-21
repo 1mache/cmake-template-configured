@@ -7,7 +7,6 @@ target_link_libraries(
     PRIVATE "LibFoo"
             "LibBar"
             nlohmann_json::nlohmann_json
-            fmt::fmt
             spdlog::spdlog
             cxxopts::cxxopts)
 

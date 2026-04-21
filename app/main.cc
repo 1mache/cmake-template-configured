@@ -1,9 +1,9 @@
 #include <filesystem>
 #include <fstream>
 #include <iostream>
+#include <string>
 
 #include <cxxopts.hpp>
-#include <fmt/format.h>
 #include <nlohmann/json.hpp>
 #include <spdlog/spdlog.h>
 
@@ -18,7 +18,6 @@ int main(int argc, char **argv)
     std::cout << "JSON: " << NLOHMANN_JSON_VERSION_MAJOR << "."
               << NLOHMANN_JSON_VERSION_MINOR << "."
               << NLOHMANN_JSON_VERSION_PATCH << '\n';
-    std::cout << "FMT: " << FMT_VERSION << '\n';
     std::cout << "CXXOPTS: " << CXXOPTS__VERSION_MAJOR << "."
               << CXXOPTS__VERSION_MINOR << "." << CXXOPTS__VERSION_PATCH
               << '\n';
@@ -33,8 +32,8 @@ int main(int argc, char **argv)
     // char x[10];
     // x[11] = 1;
 
-    const auto welcome_message =
-        fmt::format("Welcome to {} v{}\n", project_name, project_version);
+    const auto welcome_message = "Welcome to " + std::string{project_name} +
+                                 " v" + std::string{project_version} + "\n";
     spdlog::info(welcome_message);
 
     cxxopts::Options options(project_name.data(), welcome_message);
@@ -71,7 +70,7 @@ int main(int argc, char **argv)
 
     if (verbose)
     {
-        fmt::print("Opening file: {}\n", filename);
+        std::cout << "Opening file: " << filename << '\n';
     }
 
     auto ifs = std::ifstream{filename};
@@ -86,7 +85,7 @@ int main(int argc, char **argv)
     if (verbose)
     {
         const auto name = parsed_data["name"];
-        fmt::print("Name: {}\n", name);
+        std::cout << "Name: " << name << '\n';
     }
 
     return 0;

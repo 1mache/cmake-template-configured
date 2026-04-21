@@ -7,7 +7,6 @@ target_include_directories("LibFoo" PUBLIC ${LIBRARY_INCLUDES})
 target_link_libraries(
     "LibFoo"
     PRIVATE nlohmann_json::nlohmann_json
-            fmt::fmt
             spdlog::spdlog
             cxxopts::cxxopts)
 
